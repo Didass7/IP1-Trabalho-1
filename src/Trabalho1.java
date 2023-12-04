@@ -73,14 +73,17 @@ public class Trabalho1 {
 
                         //Insere um novo item à lista :D
                         case 'I':
-                            System.out.println("Insira um item novo para a lista.");
-                                String novoItem = scanner.next();
+                            System.out.println("Insira um item novo para a lista.\n");
+                                String novoItem = scanner.nextLine();
                                 nome [nItens]= novoItem;
+                                nItens++;
+
                             break;
 
                         //Insere um item numa posição escolhida
                         case 'p':
-                            for (int i; i<100; ){
+                            for (int i = 0; i < nItens; i++) {
+                                System.out.printf("%d \t %s \n", (i + 1), nome [i]);
 
 
                             }
