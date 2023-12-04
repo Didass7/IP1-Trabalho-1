@@ -52,63 +52,93 @@ public class Trabalho1 {
         //////////////////////////////////////
         ////////////MENU PRINCIPAL////////////
         //////////////////////////////////////
-        char op;
-        boolean fechar = false;
+        char op = ' ';
 
-        while(!fechar) {
+        do {
             System.out.println(menuPrincipal);
             op = scanner.next().charAt(0);
-            scanner.nextLine();
             switch (op) {
+
+                //////////////////////////////////////
+                ////// SUBMENU E - EDITAR LISTA //////
+                //////////////////////////////////////
+
                 case 'E':
+
                     System.out.println(editarLista);
+                    char opEditarLista = scanner.next().charAt(0);
+                    switch (opEditarLista) {
+                        case 'I':
+                            System.out.println("Inserir item no fim da lista.");
+                            break;
+                        case 'p':
+                            System.out.println("Inserir item na posição n da lista.");
+                            break;
+                        case 'A':
+                            System.out.println("Apagar último item inserido na lista.");
+                            break;
+                        case 'n':
+                            System.out.println("Apagar item na posição n da lista.");
+                            break;
+                        case 'a':
+                            System.out.println("Apagar itens da posição m à n da lista.");
+                            break;
+                        case 'L':
+                            System.out.println("Listar todos os itens.");
+                            break;
+                        case 'V':
+                            break;
+                        default:
+                            System.out.println("Opção Inválida.");
+                    }
                     break;
+
+
+                //////////////////////////////////////
+                ///// SUBMENU F - FAZER COMPRAS //////
+                //////////////////////////////////////
                 case 'F':
                     System.out.println(fazerCompras);
+                    char opFazerCompras = scanner.next().charAt(0);
+                    switch (opFazerCompras) {
+                        case 'M':
+                            System.out.println("Marcar primeiro item por comprar.");
+                            break;
+                        case 'D':
+                            System.out.println("Desmarcar primeiro item comprado.");
+                            break;
+                        case 'n':
+                            System.out.println("Trocar estado por nomes");
+                            break;
+                        case 'p':
+                            System.out.println("Trocar estado por posição");
+                            break;
+                        case 'L':
+                            System.out.println("Listar");
+                            break;
+                        case 'V':
+                            break;
+                        default:
+                            System.out.println("Opção inválida");
+                    }
                     break;
+
+                //////////////////////////////////////
+                ////// SUBMENU c - FAZER CONTAS //////
+                //////////////////////////////////////
                 case 'c':
                     System.out.println(fazerContas);
                     break;
+
+                //////////////////////////////////////
+                //// SUBMENU S - FECHAR PROGRAMA /////
+                //////////////////////////////////////
                 case 'S':
-                    fechar = true;
-                    System.out.println("Saiu do Programa");
-            }
-        }
-
-
-        //////////////////////////////////////
-        //////// MENU (E)DITAR LISTA /////////
-        //////////////////////////////////////
-
-        char opEditarLista;
-        do {
-            System.out.println(editarLista);
-            opEditarLista = scanner.next().charAt(0);
-
-            switch (opEditarLista) {
-                case 'I':
-                    System.out.println(editarLista);
-                    break;
-                case 'p':
-                    System.out.println(fazerCompras);
-                    break;
-                case 'A':
-                    System.out.println(fazerContas);
-                    break;
-                case 'n':
-                    System.out.println(editarLista);
-                    break;
-                case 'a':
-                    System.out.println(fazerCompras);
-                    break;
-                case 'L':
-                    System.out.println(fazerContas);
-                    break;
-                case 'V':
+                    System.out.println("Saiu do Programa.");
                     break;
                 default:
                     System.out.println("Opção Inválida.");
             }
-        } while (opEditarLista != 'V' && op!='S');
+        } while (op != 'S');
     }
 }
