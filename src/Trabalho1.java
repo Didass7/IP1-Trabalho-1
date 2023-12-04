@@ -97,7 +97,9 @@ public class Trabalho1 {
                 //////////////////////////////////////
                 ///// SUBMENU F - FAZER COMPRAS //////
                 //////////////////////////////////////
+
                 case 'F':
+
                     System.out.println(fazerCompras);
                     char opFazerCompras = scanner.next().charAt(0);
                     switch (opFazerCompras) {
@@ -126,14 +128,18 @@ public class Trabalho1 {
                 //////////////////////////////////////
                 ////// SUBMENU c - FAZER CONTAS //////
                 //////////////////////////////////////
+
                 case 'c':
+
                     System.out.println(fazerContas);
                     break;
 
                 //////////////////////////////////////
                 //// SUBMENU S - FECHAR PROGRAMA /////
                 //////////////////////////////////////
+
                 case 'S':
+
                     System.out.println("Saiu do Programa.");
                     break;
                 default:
