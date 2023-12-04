@@ -1,3 +1,5 @@
+import javax.sound.midi.Soundbank;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.Scanner;
 
 public class Trabalho1 {
@@ -52,7 +54,7 @@ public class Trabalho1 {
         //////////////////////////////////////
         ////////////MENU PRINCIPAL////////////
         //////////////////////////////////////
-        char op = ' ';
+        char op;
 
         do {
             System.out.println(menuPrincipal);
@@ -68,11 +70,21 @@ public class Trabalho1 {
                     System.out.println(editarLista);
                     char opEditarLista = scanner.next().charAt(0);
                     switch (opEditarLista) {
+
+                        //Insere um novo item à lista :D
                         case 'I':
-                            System.out.println("Inserir item no fim da lista.");
+                            System.out.println("Insira um item novo para a lista.");
+                                String novoItem = scanner.next();
+                                nome [nItens]= novoItem;
                             break;
+
+                        //Insere um item numa posição escolhida
                         case 'p':
-                            System.out.println("Inserir item na posição n da lista.");
+                            for (int i; i<100; ){
+
+
+                            }
+
                             break;
                         case 'A':
                             System.out.println("Apagar último item inserido na lista.");
@@ -83,9 +95,28 @@ public class Trabalho1 {
                         case 'a':
                             System.out.println("Apagar itens da posição m à n da lista.");
                             break;
+
+                            //////////////////////////////////////
+                            ////// SUB-SUBMENU L - Listagem //////
+                            //////////////////////////////////////
+
                         case 'L':
-                            System.out.println("Listar todos os itens.");
+                            System.out.println(listar);
+                            char opLista = scanner.next().charAt(0);
+                            switch (opLista) {
+                                case 't':
+                                    System.out.println("Listar todos os itens.");
+                                    break;
+                                case 'c':
+                                    System.out.println("Listar itens comprados");
+                                    break;
+                                case 'p':
+                                    System.out.println("Listar itens por comprar");
+                                    break;
+                            }
                             break;
+
+
                         case 'V':
                             break;
                         default:
@@ -132,6 +163,23 @@ public class Trabalho1 {
                 case 'c':
 
                     System.out.println(fazerContas);
+                    char opFazerContas = scanner.next().charAt(0);
+                    switch (opFazerContas) {
+                        case 'l':
+                            System.out.println("Quanto custa a lista?");
+                            break;
+                        case 'g':
+                            System.out.println("Quanto já gastei?");
+                            break;
+                        case 'f':
+                            System.out.println("Quanto custa o que falta comprar?");
+                            break;
+                        case 'm':
+                            System.out.println("Qual o preço médio por item?");
+                            break;
+                        default:
+                            System.out.println("Opção Inválida");
+                    }
                     break;
 
                 //////////////////////////////////////
