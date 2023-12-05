@@ -91,10 +91,11 @@ public class Trabalho1 {
 
                         //Insere um item numa posição escolhida
                         case 'p':
+                            System.out.println("Aqui tem a Lista com todos os seus Itens:");
+                            System.out.printf(" %-4s  %-25s  %-10s  %-8s  %-8s\n", "Item", "Nome", "Quantidade", "Preço", "Comprado");
                             for (int i = 0; i < nItens; i++) {
-                                System.out.println("Lista de Itens:");
-                                System.out.println("\tItem \t Quantidade \t Preço \t Comprado");
-                                System.out.printf("%d \t %s \t %.2f \t\t\t %.2f \n", (i + 1),nome[i],quanto[i], preco[i]);
+                                char marcado = feito[i] ? 'x' : ' ';
+                                System.out.printf(" %-4d  %-25s  %-10.2f  %-8.2f  %-8c\n", (i + 1), nome[i], quanto[i], preco[i], marcado);
                             }
 
                             System.out.println("Insira a posição atual do item:");
@@ -160,18 +161,19 @@ public class Trabalho1 {
 
                         //Apaga item na posição desejada da lista.
                         case 'n':
+                            System.out.println("Aqui tem a Lista com todos os seus Itens:");
+                            System.out.printf(" %-4s  %-25s  %-10s  %-8s  %-8s\n", "Item", "Nome", "Quantidade", "Preço", "Comprado");
                             for (int i = 0; i < nItens; i++) {
-                                System.out.println("Lista de Itens:");
-                                System.out.println("\tItem \t Quantidade \t Preço \t Comprado");
-                                System.out.printf("%d \t %s \t %.2f \t\t\t %.2f \n", (i + 1),nome[i],quanto[i], preco[i]);
+                                char marcado = feito[i] ? 'x' : ' ';
+                                System.out.printf(" %-4d  %-25s  %-10.2f  %-8.2f  %-8c\n", (i + 1), nome[i], quanto[i], preco[i], marcado);
                             }
 
                             if (nItens > 0) {
                                 System.out.println("Digite a posição do item a ser apagado:");
                                 int posicao = scanner.nextInt();
 
-                                if (posicao >= 0 || posicao < nItens) {
-                                    for (int i = posicao; i < nItens - 1; i++) {
+                                if (posicao >= 1 && posicao <= nItens) {
+                                    for (int i = posicao - 1; i < nItens - 1; i++) {
                                         nome[i] = nome[i + 1];
                                         quanto[i] = quanto[i + 1];
                                         preco[i] = preco[i + 1];
@@ -183,30 +185,30 @@ public class Trabalho1 {
                                 } else {
                                     System.out.println("Posição inválida.");
                                 }
-                            }
-                            else {
+                            } else {
                                 System.out.println("A lista está vazia. Nada a remover.");
                             }
                             break;
 
+
                         //Apaga item de uma posição à outra da lista.
                         case 'a':
-
+                            System.out.println("Aqui tem a Lista com todos os seus Itens:");
+                            System.out.printf(" %-4s  %-25s  %-10s  %-8s  %-8s\n", "Item", "Nome", "Quantidade", "Preço", "Comprado");
                             for (int i = 0; i < nItens; i++) {
-                                System.out.println("Lista de Itens:");
-                                System.out.println("\tItem \t Quantidade \t Preço \t Comprado");
-                                System.out.printf("%d \t %s \t %.2f \t\t\t %.2f \n", (i + 1),nome[i],quanto[i], preco[i]);
+                                char marcado = feito[i] ? 'x' : ' ';
+                                System.out.printf(" %-4d  %-25s  %-10.2f  %-8.2f  %-8c\n", (i + 1), nome[i], quanto[i], preco[i], marcado);
                             }
 
-                            if (nItens>0){
+                            if (nItens > 0) {
                                 System.out.println("Digite a posição inicial (m) dos itens a serem apagados:");
                                 int pInicial = scanner.nextInt();
                                 System.out.println("Digite a posição final (n) dos itens a serem apagados:");
                                 int pFinal = scanner.nextInt();
 
-                                if (pInicial>=0 || pFinal < nItens || pInicial<=pFinal){
-                                    int qRemovidos = pFinal - pInicial +1;
-                                    for(int i = pInicial; i < nItens - qRemovidos; i++){
+                                if (pInicial >= 0 || pFinal < nItens || pInicial <= pFinal) {
+                                    int qRemovidos = pFinal - pInicial + 1;
+                                    for (int i = pInicial; i < nItens - qRemovidos; i++) {
                                         nome[i] = nome[i + qRemovidos];
                                         quanto[i] = quanto[i + qRemovidos];
                                         preco[i] = preco[i + qRemovidos];
@@ -214,11 +216,11 @@ public class Trabalho1 {
                                     }
                                     nItens -= qRemovidos;
 
-                                    System.out.println("Itens da posição "+pInicial+" à posição "+pFinal+" removidos.");
-                                }else{
+                                    System.out.println("Itens da posição " + pInicial + " à posição " + pFinal + " removidos.");
+                                } else {
                                     System.out.println("Posições inválidas.");
                                 }
-                            }else {
+                            } else {
                                 System.out.println("A lista está vazia.");
                             }
                             break;
@@ -246,8 +248,10 @@ public class Trabalho1 {
                                     break;
                             }
                             break;
+                            //Voltar
                         case 'V':
                             break;
+                            //Opções inválidas
                         default:
                             System.out.println("Opção Inválida.");
                     }
@@ -294,6 +298,8 @@ public class Trabalho1 {
                     System.out.println(fazerContas);
                     char opFazerContas = scanner.next().charAt(0);
                     switch (opFazerContas) {
+
+                        //Faz a operação para calcular o total da lista
                         case 'l':
                             System.out.println("Quanto custa a lista?");
                             break;
