@@ -1,5 +1,3 @@
-import javax.sound.midi.Soundbank;
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.Scanner;
 
 public class Trabalho1 {
@@ -69,46 +67,107 @@ public class Trabalho1 {
 
                     System.out.println(editarLista);
                     char opEditarLista = scanner.next().charAt(0);
+                    scanner.nextLine();
                     switch (opEditarLista) {
 
                         //Insere um novo item à lista :D
                         case 'I':
                             System.out.println("Insira um item novo para a lista.\n");
-                                String novoItem = scanner.nextLine();
-                                nome [nItens]= novoItem;
-                                nItens++;
+                            String novoItem = scanner.nextLine();
+                            nome[nItens] = novoItem;
+                            nItens++;
 
                             break;
 
                         //Insere um item numa posição escolhida
                         case 'p':
                             for (int i = 0; i < nItens; i++) {
-                                System.out.printf("%d \t %s \n", (i + 1), nome [i]);
+                                System.out.printf("%d \t %s \n", (i + 1), nome[i]);}
 
+                                System.out.println("Insira a posição atual do item:");
+                                int posAtual = scanner.nextInt() - 1;
+                                System.out.println("Insira a nova posição do item:");
+                                int posNova = scanner.nextInt() - 1;
 
-                            }
+                                //Verifica se a posição atual é maior é válida
+                                if (posAtual < 0 || posAtual >= nItens || posNova < 0 || posNova >= nItens) {
+                                    System.out.println("Posição inválida!");
+                                } else if (posAtual == posNova) {
+                                    System.out.println("O item já está nessa posição!");
+
+                                //Variaveis temporarias para mover a posição
+                                } else {
+                                    String item = nome[posAtual];
+                                    double qtd = quanto[posAtual];
+                                    double precoItem = preco[posAtual];
+                                    boolean feitoItem = feito[posAtual];
+
+                                    /*  Se a Posição Atual for maior que a Posição nova,
+                                     repete até i ser menor que a Posição Nova          */
+
+                                    if (posAtual < posNova) {
+                                        for (int i = posAtual; i < posNova; i++) {
+                                            nome[i] = nome[i + 1];
+                                            quanto[i] = quanto[i + 1];
+                                            preco[i] = preco[i + 1];
+                                            feito[i] = feito[i + 1];
+                                        }
+
+                                    /*  Se a Posição Atual for menor que a Posição nova,
+                                    repete até i ser maior que a Posição Nova            */
+
+                                    } else {
+                                        for (int i = posAtual; i > posNova; i--) {
+                                            nome[i] = nome[i - 1];
+                                            quanto[i] = quanto[i - 1];
+                                            preco[i] = preco[i - 1];
+                                            feito[i] = feito[i - 1];
+                                        }
+                                    }
+                                    //Atualiza os arrays para a nova posição
+                                    nome[posNova] = item;
+                                    quanto[posNova] = qtd;
+                                    preco[posNova] = precoItem;
+                                    feito[posNova] = feitoItem;
+                                    System.out.println("Item movido com sucesso!");
+
+                                }
 
                             break;
+
+                        //Apaga o ultimo item inserido na lista
                         case 'A':
-                            System.out.println("Apagar último item inserido na lista.");
+                            if (nItens == 0) {
+                                System.out.println("A Lista está vazia");
+                            } else {
+                                nItens--;
+                                System.out.println("Último Item da lista removido.");
+                            }
                             break;
+
+                        //Apaga item na posição desejada da lista.
                         case 'n':
-                            System.out.println("Apagar item na posição n da lista.");
+                            if (nItens == 0) {
+                                System.out.println("A Lista está vazia");
+                            }
                             break;
+
                         case 'a':
                             System.out.println("Apagar itens da posição m à n da lista.");
                             break;
 
-                            //////////////////////////////////////
-                            ////// SUB-SUBMENU L - Listagem //////
-                            //////////////////////////////////////
+                        //////////////////////////////////////
+                        ////// SUB-SUBMENU L - Listagem //////
+                        //////////////////////////////////////
 
                         case 'L':
                             System.out.println(listar);
                             char opLista = scanner.next().charAt(0);
                             switch (opLista) {
                                 case 't':
-                                    System.out.println("Listar todos os itens.");
+                                    System.out.println("Aqui tem a Lista com todos os seus Itens:");
+                                    for (int i = 0; i < nItens; i++) {
+                                        System.out.printf("%d \t %s \n", (i + 1), nome[i]);}
                                     break;
                                 case 'c':
                                     System.out.println("Listar itens comprados");
@@ -196,6 +255,7 @@ public class Trabalho1 {
                 default:
                     System.out.println("Opção Inválida.");
             }
-        } while (op != 'S');
+        }
+        while (op != 'S');
     }
 }
