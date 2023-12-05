@@ -161,7 +161,10 @@ public class Trabalho1 {
                         //Apaga item na posição desejada da lista.
                         case 'n':
                             for (int i = 0; i < nItens; i++) {
-                                System.out.printf("%d \t %s \n", (i + 1), nome[i]);}
+                                System.out.println("Lista de Itens:");
+                                System.out.println("\tItem \t Quantidade \t Preço \t Comprado");
+                                System.out.printf("%d \t %s \t %.2f \t\t\t %.2f \n", (i + 1),nome[i],quanto[i], preco[i]);
+                            }
 
                             if (nItens > 0) {
                                 System.out.println("Digite a posição do item a ser apagado:");
@@ -190,7 +193,10 @@ public class Trabalho1 {
                         case 'a':
 
                             for (int i = 0; i < nItens; i++) {
-                                System.out.printf("%d \t %s \n", (i + 1), nome[i]);}
+                                System.out.println("Lista de Itens:");
+                                System.out.println("\tItem \t Quantidade \t Preço \t Comprado");
+                                System.out.printf("%d \t %s \t %.2f \t\t\t %.2f \n", (i + 1),nome[i],quanto[i], preco[i]);
+                            }
 
                             if (nItens>0){
                                 System.out.println("Digite a posição inicial (m) dos itens a serem apagados:");
@@ -227,8 +233,9 @@ public class Trabalho1 {
                             switch (opLista) {
                                 case 't':
                                     System.out.println("Aqui tem a Lista com todos os seus Itens:");
+                                    System.out.println("\tItem \t\t\t\t Quantidade \t Preço \t Comprado");
                                     for (int i = 0; i < nItens; i++) {
-                                        System.out.printf("%d \t %s \n", (i + 1), nome[i]);
+                                        System.out.printf("%d \t %s \t\t\t\t %.2f \t\t\t %.2f \n", (i + 1),nome[i],quanto[i], preco[i]);
                                     }
                                     break;
                                 case 'c':
