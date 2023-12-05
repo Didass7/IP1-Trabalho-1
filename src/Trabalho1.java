@@ -77,13 +77,16 @@ public class Trabalho1 {
                             String novoItem = scanner.nextLine();
                             nome[nItens] = novoItem;
 
-                            System.out.println("Insira o valor do item adicionado.");
+                            System.out.println("Insira o preço do item adicionado.");
                             double novoPreco = scanner.nextDouble();
                             preco[nItens] = novoPreco;
 
                             System.out.println("Insira a quatidade do item adicionado");
                             int quatidade = scanner.nextInt();
                             quanto[nItens] = quatidade;
+
+                            boolean comprado = false;
+                            feito[nItens] = comprado;
 
                             nItens++;
                             System.out.println("Item adicionado com sucesso!");
@@ -235,9 +238,10 @@ public class Trabalho1 {
                             switch (opLista) {
                                 case 't':
                                     System.out.println("Aqui tem a Lista com todos os seus Itens:");
-                                    System.out.println("\tItem \t\t\t\t Quantidade \t Preço \t Comprado");
+                                    System.out.printf(" %-4s  %-25s  %-10s  %-8s  %-8s\n", "Item", "Nome", "Quantidade", "Preço", "Comprado");
                                     for (int i = 0; i < nItens; i++) {
-                                        System.out.printf("%d \t %s \t\t\t\t %.2f \t\t\t %.2f \n", (i + 1),nome[i],quanto[i], preco[i]);
+                                        char marcado = feito[i] ? 'x' : ' ';
+                                        System.out.printf(" %-4d  %-25s  %-10.2f  %-8.2f  %-8c\n", (i + 1), nome[i], quanto[i], preco[i], marcado);
                                     }
                                     break;
                                 case 'c':
@@ -268,7 +272,17 @@ public class Trabalho1 {
                     char opFazerCompras = scanner.next().charAt(0);
                     switch (opFazerCompras) {
                         case 'M':
-                            System.out.println("Marcar primeiro item por comprar.");
+                            if (nItens > 0){
+                                for (int i = 0; i<nItens; i++){
+                                    if(!feito[i]){
+                                        feito[i] = true;
+                                        System.out.println(nome[i]+" está marcado como comprado!");
+                                        break;
+                                    }
+                                }
+                            }else{
+                                System.out.println("A lista está vazia.");
+                            }
                             break;
                         case 'D':
                             System.out.println("Desmarcar primeiro item comprado.");
