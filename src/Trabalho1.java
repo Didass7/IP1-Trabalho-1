@@ -48,12 +48,11 @@ public class Trabalho1 {
                 + "Qual o preço (m)édio por item?\n"
                 + "----------------------------------------\n";
 
-
         //////////////////////////////////////
         ////////////MENU PRINCIPAL////////////
         //////////////////////////////////////
-        char op;
 
+        char op;
         do {
             System.out.println(menuPrincipal);
             op = scanner.next().charAt(0);
@@ -64,7 +63,6 @@ public class Trabalho1 {
                 //////////////////////////////////////
 
                 case 'E':
-
                     System.out.println(editarLista);
                     char opEditarLista = scanner.next().charAt(0);
                     scanner.nextLine();
