@@ -241,9 +241,8 @@ public class Trabalho1 {
                             break;
                         case 'V': //Voltar
                             break;
-                            //Opções inválidas
                         default:
-                            System.out.println("Opção Inválida.");
+                            System.out.println("Opção Inválida."); //Opções inválidas
                     }
                     break;
 
@@ -394,26 +393,54 @@ public class Trabalho1 {
 
                     System.out.println(fazerContas);
                     char opFazerContas = scanner.next().charAt(0);
-                    switch (opFazerContas) {
+                    double total = 0.0;
+                    for(int i = 0; i < nItens; i++){
+                        total += preco[i]*quanto[i];
+                    }
+                    switch (opFazerContas)
+                    {
 
                         //Faz a operação para calcular o total da lista
                         case 'l':
-                            System.out.println("Quanto custa a lista?");
+                            System.out.println("O valor total da lista é: "+ total +" €.");
                             break;
 
                         //Faz a operação para calcular o valor gasto
                         case 'g':
-                            System.out.println("Quanto já gastei?");
+                            double gasto = 0.0;
+
+                            for (int i = 0; i < nItens; i++) {
+                                if (feito[i]) {
+                                    gasto += quanto[i] * preco[i];
+                                }
+                            }
+                            System.out.printf("O valor total gasto é: %.2f\n", gasto);
                             break;
 
                         //Faz a operação para calcular quanto custa o que ainda não foi comprado
                         case 'f':
-                            System.out.println("Quanto custa o que falta comprar?");
+                            double falta = 0.0;
+
+                            for (int i = 0; i < nItens; i++) {
+                                if (!feito[i]) {
+                                    falta += quanto[i] * preco[i];
+                                }
+                            }
+                            System.out.printf("O valor total do que falta comprar é: %.2f\n", falta);
                             break;
 
                         //Faz a operação para calcular o preço médio por item
                         case 'm':
-                            System.out.println("Qual o preço médio por item?");
+                            if (nItens > 0) {
+                                double precoMedio = total / nItens;
+                                System.out.printf("O preço médio por item é: %.2f\n", precoMedio);
+                            } else {
+                                System.out.println("A lista está vazia. Não é possível calcular o preço médio.");
+                            }
+                            break;
+
+                        default:
+                            System.out.println("Opção Inválida");
                             break;
                     }
                     break;
