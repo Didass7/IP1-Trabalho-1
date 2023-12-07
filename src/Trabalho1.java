@@ -213,6 +213,7 @@ public class Trabalho1 {
                                 int posicao = scanner.nextInt();
 
                                 if (posicao >= 0 && posicao < nItens) {
+                                    // Remove o item na posição especificada e reorganiza a lista
                                     for (int i = posicao; i < nItens - 1; i++) {
                                         nome[i] = nome[i + 1];
                                         quanto[i] = quanto[i + 1];
@@ -334,7 +335,7 @@ public class Trabalho1 {
                     char opFazerCompras = scanner.next().charAt(0);
                     switch (opFazerCompras) {
 
-                        //Marcar o último item como "comprado"
+                        //Marcar o primeiro item como "comprado"
                         case 'M':
                             if (nItens > 0) {
                                 //Percorre a lista de itens e verifica se o item já está marcado como comprado
@@ -363,9 +364,9 @@ public class Trabalho1 {
                                 if (feito[i]) {
                                     feito[i] = false;
 
-                                    System.out.println( "┏--------------------------------------------------┒\n"
+                                    System.out.println( "┏----------------------------------------┒\n"
                                                     +   "        "+ nome[i] + " foi desmarcado.  \n"
-                                                    +   "┗--------------------------------------------------┛\n");
+                                                    +   "┗----------------------------------------┛\n");
                                     primeiroItemMarcado = true;
                                     break;
                                 }
@@ -391,13 +392,15 @@ public class Trabalho1 {
                             String nomeItem = scanner.next();
                             boolean encontrado = false;
 
+                            //faz um ciclo para encontrar o item correspondente ao nome fornecido
                             for (int i = 0; i < nItens; i++) {
                                 if (nome[i].length() > 0 && nome[i].charAt(0) == nomeItem.charAt(0)) {
+                                    //altera o estado do item entre "comprado" e "por comprar"
                                     feito[i] = !feito[i];
                                     String estado = feito[i] ? "comprado" : "por comprar";
                                     System.out.println( "┏--------------------------------------------------┒\n"
-                                                    +   "     "+nome[i] + " está agora " + estado + "!"
-                                                    +   "┗--------------------------------------------------┛\n");
+                                            +   "     "+nome[i] + " está agora " + estado + "!\n"
+                                            +   "┗--------------------------------------------------┛\n");
                                     encontrado = true;
                                     break;
                                 }
@@ -421,15 +424,19 @@ public class Trabalho1 {
 
                             System.out.println("Qual é a posição do item a ser marcado/desmarcado? ");
                             int posicao = scanner.nextInt();
+
+                            // Verifica se a posição fornecida é válida
                             if (posicao < 0 && posicao >= nItens) {
                                 System.out.println( "┏------------------------------------------┒\n"
                                                 +   "|            Posição Inválida!             |\n"
                                                 +   "┗------------------------------------------┛\n");
                             } else {
+
+                                // Marca ou desmarca o item na posição especificada
                                 feito[posicao] = !feito[posicao];
                                 String estado = feito[posicao] ? "comprado" : "por comprar";
                                 System.out.println( "┏----------------------------------------------------┒\n"
-                                                +   "  "+nome[posicao] + " está agora " + estado + "!"
+                                                +   "  "+nome[posicao] + " está agora " + estado + "!\n"
                                                 +   "┗----------------------------------------------------┛\n");
                             }
                             break;
@@ -536,16 +543,23 @@ public class Trabalho1 {
                                     falta += quanto[i] * preco[i];
                                 }
                             }
-                            System.out.printf("O valor total do que falta comprar é: %.2f\n", falta);
+                            System.out.println( "┏------------------------------------------------------┒");
+                            System.out.printf("   O valor total do que falta comprar é: %.2f\n", falta);
+                            System.out.println( "┗------------------------------------------------------┛\n");
                             break;
 
                         //Faz a operação para calcular o preço médio por item
                         case 'm':
                             if (nItens > 0) {
                                 double precoMedio = total / nItens;
-                                System.out.printf("O preço médio por item é: %.2f\n", precoMedio);
+
+                                System.out.println( "┏-------------------------------------------------┒");
+                                System.out.printf("      O preço médio por item é: %.2f\n", precoMedio);
+                                System.out.println( "┗-------------------------------------------------┛\n");
                             } else {
-                                System.out.println("A lista está vazia. Não é possível calcular o preço médio.");
+                                System.out.println( "┏-----------------------------------------------------------┒\n"
+                                                +   "| A lista está vazia. Não é possível calcular o preço médio.|\n"
+                                                +   "┗-----------------------------------------------------------┛\n");
                             }
                             break;
 
@@ -562,8 +576,9 @@ public class Trabalho1 {
                 //////////////////////////////////////
 
                 case 'S':
-
-                    System.out.println("Saiu do Programa.");
+                    System.out.println( "┏------------------------------------------┒\n"
+                                    +   "|             Saiu do Programa.            |\n"
+                                    +   "┗------------------------------------------┛\n");
                     break;
                 default:
                     System.out.println("Opção Inválida.");
