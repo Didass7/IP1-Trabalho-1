@@ -89,11 +89,12 @@ public class Trabalho1 {
                             nItens++;
 
                             System.out.println( "┏--------------------------------------┒\n"
-                                            +   "|      Item adicionado com sucesso!    |\n"
-                                            +   "┗--------------------------------------┛\n");
+                                    +   "|      Item adicionado com sucesso!    |\n"
+                                    +   "┗--------------------------------------┛\n");
                             break;
 
-                        //Insere um item numa posição escolhida
+
+                        //Insere um novo item numa posição escolhida
                         case 'p':
                             //Mostra a Lista para o usuario ter uma referência
                             System.out.println("Aqui tem a Lista com todos os seus Itens:");
@@ -103,88 +104,69 @@ public class Trabalho1 {
                                 System.out.printf("%d:  %-25s  %-10.2f  %-8.2f  %-8c\n", i, nome[i], quanto[i], preco[i], marcado);
                             }
 
-                            //Duas variaveis temporarias para defenir as posições onde vai haver alguma mudança
-                            System.out.println("Insira a posição atual do item:");
-                            int posAtual = scanner.nextInt();
-                            System.out.println("Insira a nova posição do item:");
-                            int posNova = scanner.nextInt();
+                            System.out.println("Insira a posição onde deseja inserir o novo item:");
+                            int posicaoEscolhida = scanner.nextInt();
+                            scanner.nextLine();
 
-                            //Verifica se a posição atual é maior e válida
-                            if (posAtual < 0 || posAtual >= nItens || posNova < 0 || posNova >= nItens) {
-
-                                System.out.println( "┏--------------------------------------┒\n"
-                                                +   "|           Posição Inválida!          |\n"
-                                                +   "┗--------------------------------------┛\n");
-
-                            } else if (posAtual == posNova) {
-
-                                System.out.println( "┏--------------------------------------┒\n"
-                                                +   "|     O item já está nessa posição!    |\n"
-                                                +   "┗--------------------------------------┛\n");
-
-                                //Variaveis temporarias para mover a posição
-                            } else {
-                                String item = nome[posAtual];
-                                double qtd = quanto[posAtual];
-                                double precoItem = preco[posAtual];
-                                boolean feitoItem = feito[posAtual];
-
-                                    /*  Se a Posição Atual for maior que a Posição nova,
-                                     repete até i ser menor que a Posição Nova          */
-
-                                if (posAtual < posNova) {
-                                    for (int i = posAtual; i < posNova; i++) {
-                                        nome[i] = nome[i + 1];
-                                        quanto[i] = quanto[i + 1];
-                                        preco[i] = preco[i + 1];
-                                        feito[i] = feito[i + 1];
-                                    }
-
-                                    /*  Se a Posição Atual for menor que a Posição nova,
-                                    repete até i ser maior que a Posição Nova            */
-
-                                } else {
-                                    for (int i = posAtual; i > posNova; i--) {
-                                        nome[i] = nome[i - 1];
-                                        quanto[i] = quanto[i - 1];
-                                        preco[i] = preco[i - 1];
-                                        feito[i] = feito[i - 1];
-                                    }
-                                }
-                                //Atualiza os arrays para a nova posição
-                                nome[posNova] = item;
-                                quanto[posNova] = qtd;
-                                preco[posNova] = precoItem;
-                                feito[posNova] = feitoItem;
-                                System.out.println(  "┏--------------------------------------┒\n"
-                                                    +"|       Item movido com sucesso!       |\n"
-                                                    +"┗--------------------------------------┛\n");
-
-                                //Lista atualizada com todas as mudanças
-                                System.out.println("Aqui tem a sua lista atualizada! ");
-                                System.out.printf("%s   %-25s  %-10s  %-8s  %-8s\n", " ", "Item", "Quantidade", "Preço", "Comprado");
-                                for (int i = 0; i < nItens; i++) {
-                                    char marcado = feito[i] ? 'x' : ' ';
-                                    System.out.printf("%d:  %-25s  %-10.2f  %-8.2f  %-8c\n", i, nome[i], quanto[i], preco[i], marcado);
-                                }
-                                System.out.println("\n---------------------------------------------------------------\n");
+                            if (posicaoEscolhida < 0 || posicaoEscolhida > nItens) {
+                                System.out.println("Posição inválida!");
+                                break;
                             }
 
+                            for (int i = nItens - 1; i >= posicaoEscolhida; i--) {
+                                nome[i+1] = nome[i];
+                                quanto[i+1] = quanto[i];
+                                preco[i+1] = preco[i];
+                                feito[i+1] = feito[i];
+                            }
+
+                            System.out.println("Insira o nome do novo item:");
+                            String nomeNovoItem = scanner.nextLine();
+                            nome[posicaoEscolhida] = nomeNovoItem;
+
+                            System.out.println("Insira o preço do novo item:");
+                            double precoNovoItem = scanner.nextDouble();
+                            preco[posicaoEscolhida] = precoNovoItem;
+
+                            System.out.println("Insira a quantidade do novo item:");
+                            double quantidadeNovoItem = scanner.nextDouble();
+                            quanto[posicaoEscolhida] = quantidadeNovoItem;
+
+                            boolean novoItemComprado = false;
+                            feito[posicaoEscolhida] = novoItemComprado;
+
+                            nItens++;
+
+                            System.out.println( "┏--------------------------------------┒\n"
+                                    +   "|      Item adicionado com sucesso!    |\n"
+                                    +   "┗--------------------------------------┛\n");
+
+
+
+                            System.out.println("Aqui tem a sua lista atualizada! ");
+                            System.out.printf("%s   %-25s  %-10s  %-8s  %-8s\n", " ", "Item", "Quantidade", "Preço", "Comprado");
+                            for (int i = 0; i < nItens; i++) {
+                                char marcado = feito[i] ? 'x' : ' ';
+                                System.out.printf("%d:  %-25s  %-10.2f  %-8.2f  %-8c\n", i, nome[i], quanto[i], preco[i], marcado);
+                            }
+                            System.out.println("\n---------------------------------------------------------------\n");
+
                             break;
+
 
                         //Apaga o ultimo item inserido na lista
                         case 'A':
                             if (nItens == 0) {
                                 System.out.println( "┏--------------------------------------┒\n"
-                                                +   "|          A Lista está vazia!         |\n"
-                                                +   "┗--------------------------------------┛\n");
+                                        +   "|          A Lista está vazia!         |\n"
+                                        +   "┗--------------------------------------┛\n");
 
                                 //Como o último item é o nItens mais alto, basta remover -1 à variavel
                             } else {
                                 nItens--;
                                 System.out.println( "┏--------------------------------------┒\n"
-                                                +   "|   Último Item removido com sucesso!  |\n"
-                                                +   "┗--------------------------------------┛\n");
+                                        +   "|   Último Item removido com sucesso!  |\n"
+                                        +   "┗--------------------------------------┛\n");
 
                                 //Lista atualizada com todas as mudanças
                                 System.out.println("Aqui tem a sua lista atualizada! ");
@@ -222,18 +204,18 @@ public class Trabalho1 {
                                     }
                                     nItens--;
                                     System.out.println( "┏------------------------------------------┒\n"
-                                                    +   "  Item na posição " + posicao + " removido com sucesso!  \n"
-                                                    +   "┗------------------------------------------┛\n");
+                                            +   "  Item na posição " + posicao + " removido com sucesso!  \n"
+                                            +   "┗------------------------------------------┛\n");
 
                                 } else {
                                     System.out.println( "┏--------------------------------------┒\n"
-                                                    +   "|            Posição inválida          |\n"
-                                                    +   "┗--------------------------------------┛\n");
+                                            +   "|            Posição inválida          |\n"
+                                            +   "┗--------------------------------------┛\n");
                                 }
                             } else {
                                 System.out.println( "┏--------------------------------------┒\n"
-                                                +   "|  A lista está vazia! Nada a remover. |\n"
-                                                +   "┗--------------------------------------┛\n");
+                                        +   "|  A lista está vazia! Nada a remover. |\n"
+                                        +   "┗--------------------------------------┛\n");
                             }
 
                             //Lista atualizada com todas as mudanças
@@ -280,18 +262,18 @@ public class Trabalho1 {
                                     nItens -= qRemovidos;
 
                                     System.out.println( "┏--------------------------------------------------┒\n"
-                                                    +   "  Itens da posição " + pInicial + " à posição " +pFinal + " foram removidos.  \n"
-                                                    +   "┗--------------------------------------------------┛\n");
+                                            +   "  Itens da posição " + pInicial + " à posição " +pFinal + " foram removidos.  \n"
+                                            +   "┗--------------------------------------------------┛\n");
 
                                 } else {
                                     System.out.println( "┏--------------------------------------┒\n"
-                                                    +   "|         Posições inválidas.          |\n"
-                                                    +   "┗--------------------------------------┛\n");
+                                            +   "|         Posições inválidas.          |\n"
+                                            +   "┗--------------------------------------┛\n");
                                 }
                             } else {
                                 System.out.println( "┏--------------------------------------┒\n"
-                                                +   "|         A lista está vazia.          |\n"
-                                                +   "┗--------------------------------------┛\n");
+                                        +   "|         A lista está vazia.          |\n"
+                                        +   "┗--------------------------------------┛\n");
                             }
 
                             //Lista atualizada com todas as mudanças
@@ -319,8 +301,8 @@ public class Trabalho1 {
                             break;
                         default:
                             System.out.println( "┏------------------------------------------┒\n"
-                                            +   "|              Opção Inválida!             |\n"
-                                            +   "┗------------------------------------------┛\n");
+                                    +   "|              Opção Inválida!             |\n"
+                                    +   "┗------------------------------------------┛\n");
                     }
                     break;
 
@@ -343,15 +325,15 @@ public class Trabalho1 {
                                     if (!feito[i]) {
                                         feito[i] = true;
                                         System.out.println( "┏--------------------------------------------------┒\n"
-                                                        +   "    "+ nome[i] + " está marcado como comprado!  \n"
-                                                        +   "┗--------------------------------------------------┛\n");
+                                                +   "    "+ nome[i] + " está marcado como comprado!  \n"
+                                                +   "┗--------------------------------------------------┛\n");
                                         break;
                                     }
                                 }
                             } else {
                                 System.out.println( "┏--------------------------------------┒\n"
-                                                +   "|          A lista está vazia!         |\n"
-                                                +   "┗--------------------------------------┛\n");
+                                        +   "|          A lista está vazia!         |\n"
+                                        +   "┗--------------------------------------┛\n");
                             }
                             break;
 
@@ -365,15 +347,15 @@ public class Trabalho1 {
                                     feito[i] = false;
 
                                     System.out.println( "┏----------------------------------------┒\n"
-                                                    +   "        "+ nome[i] + " foi desmarcado.  \n"
-                                                    +   "┗----------------------------------------┛\n");
+                                            +   "        "+ nome[i] + " foi desmarcado.  \n"
+                                            +   "┗----------------------------------------┛\n");
                                     primeiroItemMarcado = true;
                                     break;
                                 }
                                 if (!primeiroItemMarcado) {
                                     System.out.println( "┏------------------------------------------┒\n"
-                                                    +   "|  Nenhum item está marcado como comprado! |\n"
-                                                    +   "┗------------------------------------------┛\n");
+                                            +   "|  Nenhum item está marcado como comprado! |\n"
+                                            +   "┗------------------------------------------┛\n");
                                 }
                                 break;
                             }
@@ -408,8 +390,8 @@ public class Trabalho1 {
 
                             if (!encontrado) {
                                 System.out.println( "┏------------------------------------------┒\n"
-                                                +   "|       Item não encontrado na lista!      |\n"
-                                                +   "┗------------------------------------------┛\n");
+                                        +   "|       Item não encontrado na lista!      |\n"
+                                        +   "┗------------------------------------------┛\n");
                             }
                             break;
 
@@ -428,16 +410,16 @@ public class Trabalho1 {
                             // Verifica se a posição fornecida é válida
                             if (posicao < 0 && posicao >= nItens) {
                                 System.out.println( "┏------------------------------------------┒\n"
-                                                +   "|            Posição Inválida!             |\n"
-                                                +   "┗------------------------------------------┛\n");
+                                        +   "|            Posição Inválida!             |\n"
+                                        +   "┗------------------------------------------┛\n");
                             } else {
 
                                 // Marca ou desmarca o item na posição especificada
                                 feito[posicao] = !feito[posicao];
                                 String estado = feito[posicao] ? "comprado" : "por comprar";
                                 System.out.println( "┏----------------------------------------------------┒\n"
-                                                +   "  "+nome[posicao] + " está agora " + estado + "!\n"
-                                                +   "┗----------------------------------------------------┛\n");
+                                        +   "  "+nome[posicao] + " está agora " + estado + "!\n"
+                                        +   "┗----------------------------------------------------┛\n");
                             }
                             break;
 
@@ -491,8 +473,8 @@ public class Trabalho1 {
                             break;
                         default:
                             System.out.println( "┏------------------------------------------┒\n"
-                                            +   "|              Opção Inválida!             |\n"
-                                            +   "┗------------------------------------------┛\n");
+                                    +   "|              Opção Inválida!             |\n"
+                                    +   "┗------------------------------------------┛\n");
                     }
                     break;
 
@@ -515,8 +497,8 @@ public class Trabalho1 {
                         case 'l':
 
                             System.out.println( "┏----------------------------------------------┒\n"
-                                            +   "       O valor total da lista é:  "+ total +" €.   \n"
-                                            +   "┗---------------------------------------------┛\n");
+                                    +   "       O valor total da lista é:  "+ total +" €.   \n"
+                                    +   "┗---------------------------------------------┛\n");
                             break;
 
                         //Faz a operação para calcular o valor gasto
@@ -558,15 +540,15 @@ public class Trabalho1 {
                                 System.out.println( "┗-------------------------------------------------┛\n");
                             } else {
                                 System.out.println( "┏-----------------------------------------------------------┒\n"
-                                                +   "| A lista está vazia. Não é possível calcular o preço médio.|\n"
-                                                +   "┗-----------------------------------------------------------┛\n");
+                                        +   "| A lista está vazia. Não é possível calcular o preço médio.|\n"
+                                        +   "┗-----------------------------------------------------------┛\n");
                             }
                             break;
 
                         default:
                             System.out.println( "┏------------------------------------------┒\n"
-                                            +   "|              Opção Inválida!             |\n"
-                                            +   "┗------------------------------------------┛\n");
+                                    +   "|              Opção Inválida!             |\n"
+                                    +   "┗------------------------------------------┛\n");
                             break;
                     }
                     break;
@@ -577,8 +559,8 @@ public class Trabalho1 {
 
                 case 'S':
                     System.out.println( "┏------------------------------------------┒\n"
-                                    +   "|             Saiu do Programa.            |\n"
-                                    +   "┗------------------------------------------┛\n");
+                            +   "|             Saiu do Programa.            |\n"
+                            +   "┗------------------------------------------┛\n");
                     break;
                 default:
                     System.out.println("Opção Inválida.");
