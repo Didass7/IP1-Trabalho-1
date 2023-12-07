@@ -108,11 +108,13 @@ public class Trabalho1 {
                             int posicaoEscolhida = scanner.nextInt();
                             scanner.nextLine();
 
+                            // Verifica se a posição inserida é válida
                             if (posicaoEscolhida < 0 || posicaoEscolhida > nItens) {
                                 System.out.println("Posição inválida!");
                                 break;
                             }
 
+                            // Desloca os itens para abrir espaço para o novo item na posição escolhida
                             for (int i = nItens - 1; i >= posicaoEscolhida; i--) {
                                 nome[i+1] = nome[i];
                                 quanto[i+1] = quanto[i];
@@ -120,6 +122,7 @@ public class Trabalho1 {
                                 feito[i+1] = feito[i];
                             }
 
+                            //Solicita detalhes sobre um novo item
                             System.out.println("Insira o nome do novo item:");
                             String nomeNovoItem = scanner.nextLine();
                             nome[posicaoEscolhida] = nomeNovoItem;
@@ -319,6 +322,7 @@ public class Trabalho1 {
 
                         //Marcar o primeiro item como "comprado"
                         case 'M':
+                            //Verifica se há itens na lista
                             if (nItens > 0) {
                                 //Percorre a lista de itens e verifica se o item já está marcado como comprado
                                 for (int i = 0; i < nItens; i++) {
@@ -417,9 +421,9 @@ public class Trabalho1 {
                                 // Marca ou desmarca o item na posição especificada
                                 feito[posicao] = !feito[posicao];
                                 String estado = feito[posicao] ? "comprado" : "por comprar";
-                                System.out.println( "┏----------------------------------------------------┒\n"
-                                        +   "  "+nome[posicao] + " está agora " + estado + "!\n"
-                                        +   "┗----------------------------------------------------┛\n");
+                                System.out.println( "┏-----------------------------------------┒\n"
+                                                +   "  "+nome[posicao] + " está agora " + estado + "!\n"
+                                                +   "┗-----------------------------------------┛\n");
                             }
                             break;
 
@@ -487,13 +491,14 @@ public class Trabalho1 {
                     System.out.println(fazerContas);
                     char opFazerContas = scanner.next().charAt(0);
                     double total = 0.0;
+                    //Faz a operação para calcular o total da lista
                     for(int i = 0; i < nItens; i++){
                         total += preco[i]*quanto[i];
                     }
                     switch (opFazerContas)
                     {
 
-                        //Faz a operação para calcular o total da lista
+                        //Imprime o calculo feito para o total na linha 493
                         case 'l':
 
                             System.out.println( "┏----------------------------------------------┒\n"
@@ -502,6 +507,7 @@ public class Trabalho1 {
                             break;
 
                         //Faz a operação para calcular o valor gasto
+                        // Calcula o valor total gasto somando a quantidade multiplicada pelo preço de cada item marcado como comprado
                         case 'g':
                             double gasto = 0.0;
 
@@ -520,6 +526,7 @@ public class Trabalho1 {
                         case 'f':
                             double falta = 0.0;
 
+                            //Calcula o valor total do que falta comprar somando a quantidade multiplicada pelo preço de cada item não marcado como comprado
                             for (int i = 0; i < nItens; i++) {
                                 if (!feito[i]) {
                                     falta += quanto[i] * preco[i];
@@ -563,7 +570,9 @@ public class Trabalho1 {
                             +   "┗------------------------------------------┛\n");
                     break;
                 default:
-                    System.out.println("Opção Inválida.");
+                    System.out.println( "┏------------------------------------------┒\n"
+                                    +   "|              Opção Inválida.             |\n"
+                                    +   "┗------------------------------------------┛\n");
             }
         }
         while (op != 'S');
