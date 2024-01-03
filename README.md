@@ -1,3 +1,3 @@
 # Trabalho
 
-Trabalhinho pó Hugo 🤓
+Trabalho🤓
